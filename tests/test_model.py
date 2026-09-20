@@ -34,10 +34,8 @@ class TestPredictAndExplain:
     def test_predict_matches_stored_predictions(self, bundle, players):
         preds = predict(bundle, players)
         assert len(preds) == len(players)
-        # the sample was exported straight from the model's own predictions,
-        # so a fresh predict() should reproduce them almost exactly
-        max_diff = abs(preds - players["pred_value"].to_numpy()).max()
-        assert max_diff < 1.0
+        stored = players["pred_value"].to_numpy()
+        assert preds == pytest.approx(stored, rel=1e-4)
 
     def test_explain_satisfies_shap_guarantee(self, bundle, players):
         row = players.iloc[[0]]
