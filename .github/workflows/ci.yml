@@ -17,3 +17,27 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest --cov=src --cov-report=term
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the image
+        run: docker build -t tooling-for-data-science:ci .
+
+      - name: Start the container
+        run: docker run -d --name app -p 8501:8501 tooling-for-data-science:ci
+
+      - name: Wait for the app to serve its health endpoint
+        run: |
+          for _ in $(seq 1 45); do
+            if curl -sf http://localhost:8501/_stcore/health > /dev/null; then
+              echo "The container is serving."
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "The container never became healthy. Logs follow:"
+          docker logs app
+          exit 1

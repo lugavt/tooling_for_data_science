@@ -1,0 +1,35 @@
+# Version control
+.git/
+.gitignore
+
+# Local virtualenv -- the image builds its own from uv.lock
+.venv/
+
+# Caches and bytecode
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Tests and CI config are not needed in the runtime image
+tests/
+.github/
+.pre-commit-config.yaml
+
+# Coverage output
+.coverage
+htmlcov/
+coverage.xml
+
+# Local tooling, editors, OS cruft
+.agents/
+.claude/
+.vscode/
+.idea/
+.DS_Store
+.env
+
+# Docker's own files
+Dockerfile
+.dockerignore
