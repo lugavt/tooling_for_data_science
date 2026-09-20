@@ -18,3 +18,7 @@ coverage.xml
 
 # Env
 .env
+
+# Local agent tooling
+.agents/
+.claude/
