@@ -1,7 +1,7 @@
 [project]
 name = "tooling-for-data-science"
 version = "0.1.0"
-description = "Streamlit app that looks up a football player and tells you whether he is overvalued against his peer group, using live data from transfermarkt-api."
+description = "Streamlit app that predicts a La Liga player's market value with a trained XGBoost model and explains the prediction with SHAP."
 readme = "README.md"
 authors = [
     { name = "lugavt", email = "l240231@dac.unicamp.br" }
