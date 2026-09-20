@@ -1,0 +1,40 @@
+[project]
+name = "tooling-for-data-science"
+version = "0.1.0"
+description = "Streamlit app that looks up a football player and tells you whether he is overvalued against his peer group, using live data from transfermarkt-api."
+readme = "README.md"
+authors = [
+    { name = "lugavt", email = "l240231@dac.unicamp.br" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "altair>=6.3.0",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "shap>=0.52.0",
+    "streamlit>=1.64.0",
+    "xgboost>=3.4.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-mock>=3.15.1",
+    "ruff>=0.16.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
